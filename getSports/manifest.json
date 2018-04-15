@@ -1,0 +1,14 @@
+{
+  "name": "SPORTS INFO",
+  "version": "1.0",
+  "description": "get SPORTS INFO",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions":[
+    "activeTab",
+    "storage"
+  ]
+}
