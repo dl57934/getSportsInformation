@@ -11,23 +11,15 @@ app.use('/',function (req,res) {
 });
 
 
-var socketServer = http.createServer(app);
-var io = require('socket.io')(socketServer);
-
-socketServer.listen(3002,function () {
-    console.log('포트 3002에 연결됬습니다');
+http.createServer(app).listen(3000,function () {
+    console.log('포트 3000에 연결됬습니다');
 });
+var io = require('socket.io').listen(8000);
 
-io.on('connection',function (socket) {
-    console.log('Socket connection established');
+
+io.sockets.on('connection',function (socket) {
+    console.log('connect');
 });
-
-var server = http.createServer(app);
-server.listen(3000);
-
-
-
-
 
 
 
