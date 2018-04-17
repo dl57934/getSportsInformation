@@ -6,13 +6,30 @@ var app =  express();
 app.use(body.urlencoded({extended:false}));
 app.use(body.json());
 app.use('/',function (req,res) {
-   res.redirect('popup.html')
+   res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});
+   res.write('<h1>getSports Server</h1>')
 });
-require.config({
-    baseUrl: "scripts"
+
+
+var socketServer = http.createServer(app);
+var io = require('socket.io')(socketServer);
+
+socketServer.listen(3002,function () {
+    console.log('포트 3002에 연결됬습니다');
 });
-http.createServer(app).listen(3000,function () {
-    console.log('포트 3000에 연결됬습니다');
+
+io.on('connection',function (socket) {
+    console.log('Socket connection established');
 });
+
+var server = http.createServer(app);
+server.listen(3000);
+
+
+
+
+
+
+
 
 
