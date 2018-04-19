@@ -9,11 +9,5 @@
   },
   "permissions":[
     "activeTab",
-    "storage"],
-      "sockets": {
-        "tcp": {
-          "connect": "*"
-        }
-      }
-
+    "storage"]
 }

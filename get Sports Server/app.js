@@ -1,6 +1,6 @@
 var http = require('http'), express = require('express'),
     session = require('express-session'), static = require('serve-static'),
-    body = require('body-parser');
+    body = require('body-parser'),sportsInfo = require('./getSportsInfo');
 
 var app =  express();
 app.use(body.urlencoded({extended:false}));
@@ -21,6 +21,7 @@ io.sockets.on('connection',function (socket) {
     console.log('connect');
     socket.on('major',function (message) {
        console.log(message);
+       sportsInfo(message);
     });
 });
 
