@@ -6,11 +6,11 @@ function getHtmlData(url){
        return _ph.createPage();
     }).then(function (page) {
         _page = page;
-        return _page.open('http://sports.news.naver.com/wfootball/record/index.nhn');
+        return _page.open(url);
     }).then(function (status) {
         console.log(status);
         return _page.evaluate(function () {
-           return document.getElementById('wfootballTeamRecordBody').textContent;
+           return document.querySelector('.home_news_list').innerHTML;
         });
     }).then(function (content) {
         console.log(content);
