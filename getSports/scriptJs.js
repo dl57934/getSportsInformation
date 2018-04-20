@@ -5,15 +5,15 @@ socket.on('connect',function () {
 chrome.storage.sync.get(function (data) {
     if(data.whatMajor== null)socket.emit('major',1);
     document.querySelector("#whatSports").options[data.whatMajor-1].setAttribute('selected','selected');
-    socket.emit('major',data.whatMajor);
+    socket.emit('major', data.whatMajor);
 });
 
 
 document.querySelector('#whatSports').addEventListener("change",function () {
-    whatSport = document.querySelector('#whatSports').value;
-    socket.emit('major',whatSport);
+    var majorNum = document.querySelector('#whatSports').value;
+    socket.emit('major', majorNum);
     chrome.storage.sync.set({
-        whatMajor:whatSport
+        whatMajor:majorNum
     });
 
 });
