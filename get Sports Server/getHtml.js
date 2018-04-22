@@ -14,10 +14,12 @@ function getHtmlData(url){
             var news = newsList.split('\n');
             var newsUrl1 = new Array();
             var newsUrl2 = new Array();
-                newsUrl1[0] = document.querySelector("#content > div > div.home_grid > div.content > div.home_article > div.home_news > ul:nth-child(2) > li:nth-child(1) > a").href;
+            for (var i = 1;i<=10;i++)
+                newsUrl1.push( document.querySelector("#content > div > div.home_grid > div.content > div.home_article > div.home_news > ul:nth-child(2) > li:nth-child("+i+") > a").href);
             for (var i =1 ;i<=10;i++)
-                newsUrl2[i] = document.querySelector("#content > div > div.home_grid > div.content > div.home_article > div.home_news > ul.home_news_list.division > li:nth-child("+i+") > a").href;
-            return newsUrl1;
+                newsUrl2.push(document.querySelector("#content > div > div.home_grid > div.content > div.home_article > div.home_news > ul.home_news_list.division > li:nth-child(" + i + ") > a").href);
+            var newsUrl = newsUrl1.concat(newsUrl2);
+            return newsUrl;
         });
     }).then(function (content) {
         console.log(content);
