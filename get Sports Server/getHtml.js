@@ -1,6 +1,6 @@
 var phantom = require('phantom');
 var _ph,_page,_outObj;
-function getHtmlData(url){
+function getHtmlData(url,socket){
     phantom.create().then(function (ph) {
        _ph = ph;
        return _ph.createPage();
@@ -19,10 +19,12 @@ function getHtmlData(url){
             for (var i =1 ;i<=10;i++)
                 newsUrl2.push(document.querySelector("#content > div > div.home_grid > div.content > div.home_article > div.home_news > ul.home_news_list.division > li:nth-child(" + i + ") > a").href);
             var newsUrl = newsUrl1.concat(newsUrl2);
-            return newsUrl;
+            var newsInfo = {'news':news,'newsUrl':newsUrl}
+            return newsInfo;
         });
     }).then(function (content) {
         console.log(content);
+        socket.emit('newsInfo',content);
     });
 }
 

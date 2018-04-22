@@ -19,3 +19,10 @@ document.querySelector('#whatSports').addEventListener("change",function () {
         ,'majorNum':majorNum[1]}
         });
 });
+socket.on('newsInfo',function (data) {
+    var name= []
+    for(var i = 0 ;i<20;i++) {
+         name.push( (i+1)+': '+data['news'][i]+'\n');
+    }
+    alert(name)
+});
