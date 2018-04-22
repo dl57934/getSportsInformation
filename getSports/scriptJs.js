@@ -3,7 +3,7 @@ socket.on('connect',function () {
    console.log('Client connected');
 });
 chrome.storage.sync.get(function (data) {
-    if(data.whatMajor== null)socket.emit('major',data.whatMajor);
+    if(data.whatMajor== null)socket.emit('major',data.whatMajor['whatMajor']);
     document.querySelector("#whatSports").options[data.whatMajor['majorNum']-1].setAttribute('selected','selected');
     socket.emit('major', data.whatMajor['whatMajor']);
 });
