@@ -23,7 +23,7 @@ function getHtmlData(url,socket){
             return newsInfo;
         });
     }).then(function (content) {
-        console.log(content);
+        console.log(content+'a');
         socket.emit('newsInfo',content);
     });
 }
