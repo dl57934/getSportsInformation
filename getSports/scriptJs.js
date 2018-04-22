@@ -18,11 +18,24 @@ document.querySelector('#whatSports').addEventListener("change",function () {
             'whatMajor':majorNum[0]
         ,'majorNum':majorNum[1]}
         });
+    var ol = document.getElementById('ol');
+    var lis = document.getElementsByTagName('li');
+    for(var i =19;i>=0 ;i--)
+    ol.removeChild(lis[i]);
 });
 socket.on('newsInfo',function (data) {
     var name= []
     for(var i = 0 ;i<20;i++) {
-         name.push( (i+1)+': '+data['news'][i]+'\n');
+         name.push(data['news'][i+2]+'\n');
     }
-    alert(name)
+    var ol = document.getElementById('ol');
+    for (var i = 0; i < 20; i++){
+        var li = document.createElement('li');
+        ol.appendChild(li);
+        var a = document.createElement('a');
+        var text = document.createTextNode(name[i]);
+        a.appendChild(text);
+        a.setAttribute('href', data['newsUrl'][i]);
+        li.appendChild(a);
+    }
 });

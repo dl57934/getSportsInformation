@@ -4,35 +4,51 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        body{
-             width: 700px;
+        #frontHead{
+            margin: auto;
+            width:350px;
+            float: left;
+        }
+        #backHead{
+            margin: auto;
+            width: 350px;
+            float: right;
+        }
+        body {
+            width: 700px;
             height: 500px;
 
         }
-        dt{
-            float: left;
-        }
-        dd{
-            float: right;
+        #whatSports{
+            float:right;
         }
     </style>
 
 </head>
 <body>
-<dl>
-    <dt><h1>get Sports Info</h1></dt>
-    <dd><select id ="whatSports">
-        <option value="kbaseball,1" >야구</option>
+<div id="frontHead">
+        <h1 id="title">get Sports Info</h1>
+</div>
+<div id="backHead">
+    <select id="whatSports">
+        <option value="kbaseball,1">야구</option>
         <option value="wbaseball,2">해외야구</option>
         <option value="kfootball,3">축구</option>
         <option value="wfootball,4">해외축구</option>
         <option value="basketball,5">농구</option>
         <option value="volleyball,6">배구</option>
         <option value="esports,7">eSports</option>
-    </select></dd>
-</dl>
+    </select>
+</div>
+<Br><br>
+<br><br>
+<div id="newsList">
+    <ol id="ol">
+
+    </ol>
+</div>
 <script src="jquery.min.js"></script>
-<script src = "socket.io.js"></script>
+<script src="socket.io.js"></script>
 <script src="scriptJs.js"></script>
 </body>
 </html>
