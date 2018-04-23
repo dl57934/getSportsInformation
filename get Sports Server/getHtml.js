@@ -14,6 +14,7 @@ function getHtmlData(url,socket){
             var news = newsList.split('\n');
             var newsUrl1 = new Array();
             var newsUrl2 = new Array();
+
             for (var i = 1;i<=10;i++)
                 newsUrl1.push( document.querySelector("#content > div > div.home_grid > div.content > div.home_article > div.home_news > ul:nth-child(2) > li:nth-child("+i+") > a").href);
             for (var i =1 ;i<=10;i++)
@@ -23,7 +24,7 @@ function getHtmlData(url,socket){
             return newsInfo;
         });
     }).then(function (content) {
-        console.log(content+'a');
+
         socket.emit('newsInfo',content);
     });
 }
