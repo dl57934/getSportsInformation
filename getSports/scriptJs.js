@@ -20,6 +20,9 @@ document.querySelector('#whatSports').addEventListener("change",function () {
         });
     var ol = document.getElementById('ol');
     var lis = document.getElementsByTagName('li');
-    for(var i =19;i>=0 ;i--)
-    ol.removeChild(lis[i]);
+    var liLength = $('#ol > li').length;
+    alert(liLength);
+    for ( var i =liLength-1;i>=0;i--)
+        ol.removeChild(lis[i]);
+
 });
