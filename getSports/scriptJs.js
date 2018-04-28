@@ -21,7 +21,6 @@ document.querySelector('#whatSports').addEventListener("change",function () {
     var ol = document.getElementById('ol');
     var lis = document.getElementsByTagName('li');
     var liLength = $('#ol > li').length;
-    alert(liLength);
     for ( var i =liLength-1;i>=0;i--)
         ol.removeChild(lis[i]);
 

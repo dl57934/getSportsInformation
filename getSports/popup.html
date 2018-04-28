@@ -14,13 +14,23 @@
             float:left;
         }
         body {
-            width: 700px;
-            height: 500px;
+            width: 1000px;
+            height: 700px;
         }
 
         #whatSports {
             float: right;
         }
+        #newsList{
+            width: 33%;
+        }
+        #playing{
+            width: 33%;
+        }
+        li{
+            font-size: 12px;
+        }
+
     </style>
 
 </head>
@@ -40,9 +50,14 @@
         <option value="esports,7">eSports</option>
     </select>
 </div>
-<div id="newsList">
+<div id="newsList" style="float: left">
+    <h3>신문 기사</h3>
+    <br>
     <ol id="ol">
     </ol>
+</div>
+<div id ="playing" style="float: left">
+    <h3>오늘의 경기</h3>
 </div>
 <script src="jquery.min.js"></script>
 <script src="socket.io.js"></script>
