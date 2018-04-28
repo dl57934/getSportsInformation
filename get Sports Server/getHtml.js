@@ -17,7 +17,6 @@ function getHtmlData(url,socket){
             var liLength = $('.home_news_list > li').length;
             for (var i = 1;i<=10;i++)
                 newsUrl1.push( document.querySelector("#content > div > div.home_grid > div.content > div.home_article > div.home_news > ul:nth-child(2) > li:nth-child("+i+") > a").href);
-
             for (var i =1 ;i <= liLength-10;i++)
                  newsUrl2.push(document.querySelector("#content > div > div.home_grid > div.content > div.home_article > div.home_news > ul.home_news_list.division > li:nth-child(" + i + ") > a").href);
             var newsUrl = newsUrl1.concat(newsUrl2);
