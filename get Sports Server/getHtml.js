@@ -8,7 +8,6 @@ function getHtmlData(url,socket){
         _page = page;
         return _page.open(url);
     }).then(function (status) {
-        console.log(status);
         return _page.evaluate(function () {
             var newsList = document.querySelector('#content > div > div.home_grid > div.content > div.home_article > div.home_news').innerText;
             var news = newsList.split('\n');
