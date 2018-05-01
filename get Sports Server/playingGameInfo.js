@@ -24,7 +24,7 @@ function getGameInfo(url,socket,whatGame){
                     var img = document.querySelectorAll('img');
                     for(var i =0; i< todayGameLeauge ;i++)
                         tableName.push('_tab_box_' +whereleauge[i].getAttribute('data-key'));
-                    for (var i = 0; i < competition;i++){
+                    for (var i = 0; i < img.length;i++){
                         var teamImg1 = img[i].src;
                         teamImg.push(teamImg1);
                         var teamImg2 = img[i+1].src;
@@ -84,10 +84,24 @@ function getGameInfo(url,socket,whatGame){
                     }
                 }
                 else if(whatGame[3] == 'basketball'){
-                    tableName.push('_tab_box_nba');
-                    tableName.push('_tab_box_kbl')
-                    for(var i = 0 ; i<2; i++)
-                    gameInfo.push(document.getElementById(tableName[i]).innerText);
+                    var tableNum = document.querySelectorAll('#_tab_group_0 > a').length;
+                    competition = document.querySelectorAll('._tab_box  > div > ul > li').length;
+                    var img = document.querySelectorAll('img');
+                    if (tableNum != 0) {
+                        var whereLeague = document.querySelectorAll('#_tab_group_0 > a');
+                        for (var i = 0; i < tableNum; i++)
+                            tableName.push('_tab_box_' + whereLeague[i].getAttribute('data-key'));
+                        for (var i = 0; i < tableName.length; i++)
+                            gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/ /gi,''));
+                        for (var i = 0;i<img.length;i=i+2) {
+                            var teamImg1 = img[i].src;
+                            teamImg.push(teamImg1);
+                            var teamImg2 = img[i + 1].src;
+                            teamImg.push(teamImg2);
+                        }
+                    }else {
+                        gameInfo.push('오늘은 경기가 없습니다.');
+                    }
                 }
                 var game = {'gameInfo':gameInfo,'teamImg':teamImg};
                 return game;
