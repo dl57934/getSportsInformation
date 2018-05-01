@@ -17,11 +17,12 @@ function getGameInfo(url,socket,whatGame){
                 var whereleauge = '';
                 if (whatGame == 'wfootball'){
                     whereleauge = document.querySelectorAll('#_tab_group_0 > a');
-                    for(var i =0; i< todayGameLeauge ;i++) {
+                    for(var i =0; i< todayGameLeauge ;i++)
                         tableName.push('_tab_box_' +whereleauge[i].getAttribute('data-key'));
-                    }
                     for(var i = 0; i< tableName.length;i++)
-                        gameInfo.push(document.getElementById(tableName.pop()).innerText);
+                        gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/\n/g, ""));
+                    whereleauge = [];
+                    tableName = [];
                 }else if (whatGame =='volleyball') {
                      tableName.push('_tab_box_kovo');
                      gameInfo.push(document.getElementById(tableName[i]).innerText);
@@ -40,8 +41,6 @@ function getGameInfo(url,socket,whatGame){
                     for(var i = 0 ; i<2; i++)
                     gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
-
-
                 var game = {'gameInfo':gameInfo};
                 return game;
             });
