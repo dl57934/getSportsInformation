@@ -23,25 +23,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playingGameInfo.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="playingGameInfo.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/playingGameInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="67" column="62" selection-start-line="67" selection-start-column="62" selection-end-line="67" selection-end-column="62" />
+            <state relative-caret-position="158">
+              <caret line="78" column="80" lean-forward="true" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="80" />
               <folding>
                 <element signature="e#687#1711#0" />
-                <element signature="e#1101#1141#0" />
+                <element signature="e#1925#2809#0" />
                 <element signature="e#1222#1262#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getSportsInfo.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="getSportsInfo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/getSportsInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="103" selection-start-line="11" selection-start-column="103" selection-end-line="11" selection-end-column="103" />
+            <state relative-caret-position="171">
+              <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -79,8 +79,8 @@
       <list>
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/getHtml.js" />
-        <option value="$PROJECT_DIR$/playingGameInfo.js" />
         <option value="$PROJECT_DIR$/getSportsInfo.js" />
+        <option value="$PROJECT_DIR$/playingGameInfo.js" />
       </list>
     </option>
   </component>
@@ -188,25 +188,24 @@
       <workItem from="1524750335087" duration="77000" />
       <workItem from="1524935212081" duration="6234000" />
       <workItem from="1525007697875" duration="5402000" />
-      <workItem from="1525171445922" duration="22784000" />
+      <workItem from="1525171445922" duration="23127000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69994000" />
+    <option name="totallyTimeSpent" value="70337000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11235955" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11235955" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5095836" side_tool="true" weight="0.3148148" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49041638" weight="0.32905984" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48248512" visible="true" weight="0.51424503" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.48248512" visible="true" weight="0.51424503" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -244,7 +243,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -488,18 +487,6 @@
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/playingGameInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="67" column="62" selection-start-line="67" selection-start-column="62" selection-end-line="67" selection-end-column="62" />
-          <folding>
-            <element signature="e#687#1711#0" />
-            <element signature="e#1101#1141#0" />
-            <element signature="e#1222#1262#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/getHtml.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -509,8 +496,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/getSportsInfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="103" selection-start-line="11" selection-start-column="103" selection-end-line="11" selection-end-column="103" />
+        <state relative-caret-position="171">
+          <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playingGameInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="78" column="80" lean-forward="true" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="80" />
+          <folding>
+            <element signature="e#687#1711#0" />
+            <element signature="e#1925#2809#0" />
+            <element signature="e#1222#1262#0" />
+          </folding>
         </state>
       </provider>
     </entry>

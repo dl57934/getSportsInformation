@@ -69,8 +69,19 @@ function getGameInfo(url,socket,whatGame){
                     }
                 }
                 else if(whatGame[3]  == 'wbaseball'){
-                    tableName.push('_tab_box_mlb');
-                    gameInfo.push(document.getElementById(tableName[i]).innerText);
+                    var todayGame = document.querySelectorAll('#_tab_group_0 > a').length;
+                    if(todayGame != 0) {
+                        teamLength = document.querySelectorAll('#_tab_box_mlb > div > ul > li').length;
+                        gameInfo.push(document.getElementById('_tab_box_mlb').innerText);
+                        for (var i = 1; i <= teamLength; i++) {
+                            var teamImg1 = document.querySelector('#_tab_box_mlb> div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list1 > div > img').src;
+                            teamImg.push(teamImg1);
+                            var teamImg2 = document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
+                            teamImg.push(teamImg2);
+                        }
+                    }else {
+                        gameInfo['gameInfo'] ='오늘은 경기가 없습니다.';
+                    }
                 }
                 else if(whatGame[3] == 'basketball'){
                     tableName.push('_tab_box_nba');
