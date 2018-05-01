@@ -26,8 +26,13 @@
       <file leaf-file-name="playingGameInfo.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/playingGameInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="22" column="94" selection-start-line="22" selection-start-column="94" selection-end-line="22" selection-end-column="94" />
+            <state relative-caret-position="158">
+              <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+              <folding>
+                <element signature="e#970#1010#0" />
+                <element signature="e#1101#1141#0" />
+                <element signature="e#1222#1262#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -178,12 +183,12 @@
       <workItem from="1524750335087" duration="77000" />
       <workItem from="1524935212081" duration="6234000" />
       <workItem from="1525007697875" duration="5402000" />
-      <workItem from="1525171445922" duration="11329000" />
+      <workItem from="1525171445922" duration="16580000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58539000" />
+    <option name="totallyTimeSpent" value="63790000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -230,6 +235,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/getSportsInfo.js">
@@ -488,8 +498,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/playingGameInfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="22" column="94" selection-start-line="22" selection-start-column="94" selection-end-line="22" selection-end-column="94" />
+        <state relative-caret-position="158">
+          <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+          <folding>
+            <element signature="e#970#1010#0" />
+            <element signature="e#1101#1141#0" />
+            <element signature="e#1222#1262#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -13,19 +13,38 @@ function getGameInfo(url,socket,whatGame){
                 var tableName = [];
                 var gameInfo = []
                 var whatGame = 'wfootball';
-                var todayGameLeauge = document.querySelectorAll('#_tab_group_0 > a').length;
                 var whereleauge = '';
+                var teamImg = [];
+                var teamLength = '';
+                var competition
                 if (whatGame == 'wfootball'){
+                    var todayGameLeauge = document.querySelectorAll('#_tab_group_0 > a').length;
+                     competition = document.querySelectorAll('._tab_box  > div > ul > li').length;
                     whereleauge = document.querySelectorAll('#_tab_group_0 > a');
+                    var img = document.querySelectorAll('img');
                     for(var i =0; i< todayGameLeauge ;i++)
                         tableName.push('_tab_box_' +whereleauge[i].getAttribute('data-key'));
+                    for (var i = 0; i < competition;i++){
+                        var teamImg1 = img[i].src;
+                        teamImg.push(teamImg1);
+                        var teamImg2 = img[i+1].src;
+                        teamImg.push(teamImg2);
+                        i=i+1;
+                    }
                     for(var i = 0; i< tableName.length;i++)
-                        gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/\n/g, ""));
+                        gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/ /gi, ""));
                     whereleauge = [];
                     tableName = [];
                 }else if (whatGame =='volleyball') {
                      tableName.push('_tab_box_kovo');
-                     gameInfo.push(document.getElementById(tableName[i]).innerText);
+                     teamLength = document.querySelectorAll('#_tab_box_kovo > div > ul > li').length;
+                     gameInfo.push(document.getElementById('_tab_box_kovo').innerText);
+                    for (var i = 1; i <= teamLength;i++){
+                        var teamImg1 = document.querySelector('#'+tableName[i-1]+'> div > ul > li:nth-child('+i+') > div.vs_list.vs_list1 > div > img').src;
+                        teamImg.push(teamImg1);
+                        var teamImg2 = document.querySelector('#'+tableName[i-1]+' > div > ul > li:nth-child('+i+') > div.vs_list.vs_list2 > div > img').src;
+                        teamImg.push(teamImg2);
+                    }
                 }
                 else if (whatGame == 'kbaseball'){
                      tableName.push('_tab_box_kbo');
@@ -41,13 +60,16 @@ function getGameInfo(url,socket,whatGame){
                     for(var i = 0 ; i<2; i++)
                     gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
-                var game = {'gameInfo':gameInfo};
+                var game = {'gameInfo':gameInfo,'teamImg':teamImg};
                 return game;
             });
         }).then(function (content) {
-                console.log(content);
+            for(var i = 0;i<content['gameInfo'].length;i++)
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/\n/gi,"");
             _page.close();
             _ph.exit();
+            console.log(content);
+            socket.emit('centerInfo',content);
         })
 }
 
