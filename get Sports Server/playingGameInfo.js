@@ -1,5 +1,6 @@
 var phantom = require('phantom');
 var _ph, _page, _outObj;
+
 function getGameInfo(url,socket,whatGame){
         phantom.create().then(function (ph) {
             _ph = ph;
@@ -10,36 +11,38 @@ function getGameInfo(url,socket,whatGame){
         }).then(function (status) {
             return _page.evaluate(function () {
                 var tableName = [];
+                var gameInfo = []
+                var whatGame = 'wfootball';
+                var todayGameLeauge = document.querySelectorAll('#_tab_group_0 > a').length;
+                var whereleauge = '';
                 if (whatGame == 'wfootball'){
-                     tableName.push('_tab_box_epl');
-                     tableName.push('_tab_box_primera');
-                     tableName.push('_tab_box_bundesliga');
-                     tableName.push('_tab_box_seria');
-                     tableName.push('_tab_box_champs');
-                     tableName.push('_tab_box_europa');
+                    whereleauge = document.querySelectorAll('#_tab_group_0 > a');
+                    for(var i =0; i< todayGameLeauge ;i++) {
+                        tableName.push('_tab_box_' +whereleauge[i].getAttribute('data-key'));
+                    }
+                    for(var i = 0; i< tableName.length;i++)
+                        gameInfo.push(document.getElementById(tableName.pop()).innerText);
                 }else if (whatGame =='volleyball') {
                      tableName.push('_tab_box_kovo');
+                     gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
                 else if (whatGame == 'kbaseball'){
                      tableName.push('_tab_box_kbo');
+                     gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
                 else if(whatGame == 'wbaseball'){
                     tableName.push('_tab_box_mlb');
+                    gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
                 else if(whatGame == 'basketball'){
                     tableName.push('_tab_box_nba');
                     tableName.push('_tab_box_kbl')
+                    for(var i = 0 ; i<2; i++)
+                    gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
-                var gameInfo= document.getElementById('_tab_box_epl').innerText;
-                var teamImg = new Array();
-                var teamLength = document.querySelectorAll('#_tab_box_epl > div > ul > li').length;
-                for (var i = 1; i <= teamLength;i++){
-                    var teamImg1 = document.querySelector('#_tab_box_epl > div > ul > li:nth-child('+i+') > div.vs_list.vs_list1 > div > img').src;
-                    teamImg.push(teamImg1);
-                    var teamImg2 = document.querySelector('#_tab_box_epl > div > ul > li:nth-child('+i+') > div.vs_list.vs_list2 > div > img').src;
-                    teamImg.push(teamImg2);
-                }
-                var game = {'gameInfo':gameInfo, 'teamImg':teamImg};
+
+
+                var game = {'gameInfo':gameInfo};
                 return game;
             });
         }).then(function (content) {

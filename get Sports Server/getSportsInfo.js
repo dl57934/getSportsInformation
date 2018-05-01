@@ -13,6 +13,7 @@ function getSportsInfo(whatMajor,socket) {
     console.log(fullUrl);
     getHtml(fullUrl,socket);
     getGameInfo(fullGameInfo,socket,whatMajor);
+    console.log(whatMajor);
 }
 
 
