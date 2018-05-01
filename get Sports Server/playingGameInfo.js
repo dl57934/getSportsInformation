@@ -1,6 +1,5 @@
 var phantom = require('phantom');
 var _ph, _page, _outObj;
-
 function getGameInfo(url,socket,whatGame){
         phantom.create().then(function (ph) {
             _ph = ph;
@@ -9,15 +8,17 @@ function getGameInfo(url,socket,whatGame){
             _page = page;
             return _page.open(url);
         }).then(function (status) {
-            return _page.evaluate(function () {
+            return _page.evaluate(function() {
+                var pageUrl = window.location.href;
                 var tableName = [];
-                var gameInfo = []
-                var whatGame = 'wfootball';
-                var whereleauge = '';
+                var gameInfo = [];
+                var whatGame = pageUrl.split('/');
+
+                var whereleauge ;
                 var teamImg = [];
                 var teamLength = '';
-                var competition
-                if (whatGame == 'wfootball'){
+                var competition;
+                if (whatGame[3] == 'wfootball'){
                     var todayGameLeauge = document.querySelectorAll('#_tab_group_0 > a').length;
                      competition = document.querySelectorAll('._tab_box  > div > ul > li').length;
                     whereleauge = document.querySelectorAll('#_tab_group_0 > a');
@@ -31,11 +32,12 @@ function getGameInfo(url,socket,whatGame){
                         teamImg.push(teamImg2);
                         i=i+1;
                     }
-                    for(var i = 0; i< tableName.length;i++)
+                    for(var i = 0; i< tableName.length;i++) {
                         gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/ /gi, ""));
+                    }
                     whereleauge = [];
                     tableName = [];
-                }else if (whatGame =='volleyball') {
+                }else if (whatGame[3]  =='volleyball') {
                      tableName.push('_tab_box_kovo');
                      teamLength = document.querySelectorAll('#_tab_box_kovo > div > ul > li').length;
                      gameInfo.push(document.getElementById('_tab_box_kovo').innerText);
@@ -46,15 +48,15 @@ function getGameInfo(url,socket,whatGame){
                         teamImg.push(teamImg2);
                     }
                 }
-                else if (whatGame == 'kbaseball'){
+                else if (whatGame[3]  == 'kbaseball'){
                      tableName.push('_tab_box_kbo');
                      gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
-                else if(whatGame == 'wbaseball'){
+                else if(whatGame[3]  == 'wbaseball'){
                     tableName.push('_tab_box_mlb');
                     gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
-                else if(whatGame == 'basketball'){
+                else if(whatGame[3] == 'basketball'){
                     tableName.push('_tab_box_nba');
                     tableName.push('_tab_box_kbl')
                     for(var i = 0 ; i<2; i++)
