@@ -13,7 +13,6 @@ function getGameInfo(url,socket,whatGame){
                 var tableName = [];
                 var gameInfo = [];
                 var whatGame = pageUrl.split('/');
-
                 var whereleauge ;
                 var teamImg = [];
                 var teamLength = '';
@@ -37,15 +36,21 @@ function getGameInfo(url,socket,whatGame){
                     }
                     whereleauge = [];
                     tableName = [];
-                }else if (whatGame[3]  =='volleyball') {
-                     tableName.push('_tab_box_kovo');
-                     teamLength = document.querySelectorAll('#_tab_box_kovo > div > ul > li').length;
-                     gameInfo.push(document.getElementById('_tab_box_kovo').innerText);
-                    for (var i = 1; i <= teamLength;i++){
-                        var teamImg1 = document.querySelector('#'+tableName[i-1]+'> div > ul > li:nth-child('+i+') > div.vs_list.vs_list1 > div > img').src;
-                        teamImg.push(teamImg1);
-                        var teamImg2 = document.querySelector('#'+tableName[i-1]+' > div > ul > li:nth-child('+i+') > div.vs_list.vs_list2 > div > img').src;
-                        teamImg.push(teamImg2);
+                }
+                else if (whatGame[3]  =='volleyball') {
+                    var todayGame = document.querySelectorAll('#_tab_group_0 > a').length;
+                    if(todayGame != 0) {
+                        teamLength = document.querySelectorAll('#_tab_box_kovo > div > ul > li').length;
+                        gameInfo.push(document.getElementById('_tab_box_kovo').innerText);
+                        for (var i = 1; i <= teamLength; i++) {
+                            var teamImg1 = document.querySelector('#_tab_box_kovo> div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list1 > div > img').src;
+                            teamImg.push(teamImg1);
+                            var teamImg2 = document.querySelector('#_tab_box_kovo > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
+                            teamImg.push(teamImg2);
+                        }
+                    }
+                    else {
+                        gameInfo['gameInfo'] ='오늘은 경기가 없습니다.';
                     }
                 }
                 else if (whatGame[3]  == 'kbaseball'){
@@ -63,6 +68,7 @@ function getGameInfo(url,socket,whatGame){
                     gameInfo.push(document.getElementById(tableName[i]).innerText);
                 }
                 var game = {'gameInfo':gameInfo,'teamImg':teamImg};
+                gameInfo = [];
                 return game;
             });
         }).then(function (content) {
