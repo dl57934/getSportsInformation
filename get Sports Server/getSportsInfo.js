@@ -12,7 +12,7 @@ function getSportsInfo(whatMajor,socket) {
     var fullGameInfo = 'http://sports.news.naver.com/'+whatMajor+'/ajax/templateMatchBox.nhn?date='+fulllday;
     console.log(fullUrl);
     getHtml(fullUrl,socket);
-    getGameInfo(fullGameInfo,socket);
+    getGameInfo(fullGameInfo,socket,whatMajor);
 }
 
 
