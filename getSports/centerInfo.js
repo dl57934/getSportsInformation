@@ -22,7 +22,6 @@ for (var i = 0;i< data['gameInfo'].length;i++) {
         p2.innerText = data['gameInfo'][i][y][1];
         li.appendChild(teamImg);
         li.appendChild(p);
-
         li.appendChild(p2);
         li.appendChild(teamImg2);
         li.appendChild(br);
@@ -31,4 +30,9 @@ for (var i = 0;i< data['gameInfo'].length;i++) {
         z = z + 2;
     }
 }
+    $("ul").click(function () {
+        var a = $("ul").index(this);
+        var href = $("ul:eq(" + a + ") > a").attr("href");
+        chrome.tabs.create({url:href});
+    });
 });
