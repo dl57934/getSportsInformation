@@ -9,7 +9,7 @@ if (mm<10) mm='0'+mm;
 var fulllday = yyyy+''+mm+''+dd;
 function getSportsInfo(whatMajor,socket) {
     var fullUrl = 'http://sports.news.naver.com/'+whatMajor+ '/index.nhn';
-    var fullGameInfo = 'http://sports.news.naver.com/'+whatMajor+'/ajax/templateMatchBox.nhn?date=20180503';
+    var fullGameInfo = 'http://sports.news.naver.com/'+whatMajor+'/ajax/templateMatchBox.nhn?date='+fulllday;
     getHtml(fullUrl,socket);
     getGameInfo(fullGameInfo,socket,whatMajor);
 }
