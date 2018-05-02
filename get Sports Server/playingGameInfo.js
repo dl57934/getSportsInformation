@@ -34,6 +34,16 @@ function getGameInfo(url,socket,whatGame){
                     for(var i = 0; i< tableName.length;i++) {
                         gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/ /gi, ""));
                     }
+                    for(var i = 0; i< tableName.length;i++) {
+                        teamLength = document.querySelectorAll('#'+tableName[i]+' > div > ul > li').length;
+                        for(var y= 1;y<= teamLength;y++) {
+                            if(document.querySelector('#'+tableName[i]+' > div > ul > li:nth-child(' + y + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
+                                href.push(document.querySelector('#'+tableName[i]+' > div > ul > li:nth-child(' + y + ') > div.btn_wrap > a:nth-child(1)').href);
+                            else{
+                                href.push(document.querySelector('#'+tableName[i]+' > div > ul > li:nth-child(' + y + ') > div.btn_wrap > a').href);
+                            }
+                        }
+                    }
                     whereleauge = [];
                     tableName = [];
                 }
@@ -47,6 +57,13 @@ function getGameInfo(url,socket,whatGame){
                             teamImg.push(teamImg1);
                             var teamImg2 = document.querySelector('#_tab_box_kovo > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
                             teamImg.push(teamImg2);
+                        }
+                        for (var i = 1;i<= teamLength;i++){
+                            if(document.querySelector('#_tab_box_kovo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
+                                href.push(document.querySelector('#_tab_box_kovo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').href);
+                            else{
+                                href.push(document.querySelector('#_tab_box_kovo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a').href);
+                            }
                         }
                     }
                     else {
@@ -63,6 +80,13 @@ function getGameInfo(url,socket,whatGame){
                             teamImg.push(teamImg1);
                             var teamImg2 = document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
                             teamImg.push(teamImg2);
+                        }
+                        for (var i = 1;i<= teamLength;i++){
+                            if(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
+                                href.push(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').href);
+                            else{
+                                href.push(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a').href);
+                            }
                         }
                     }else {
                         gameInfo['gameInfo'] ='오늘은 경기가 없습니다.';
@@ -124,6 +148,8 @@ function getGameInfo(url,socket,whatGame){
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/영상/gi,',');
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/전력비교/gi,',');
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/전력/gi,',');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/문자중계/gi,',');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/문자/gi,',');
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/종료기록/gi,'\n종료');
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/경기취소/gi,'\n경기취소');
                 content['gameInfo'][i] = content['gameInfo'][i].split(',');

@@ -22,15 +22,18 @@ document.querySelector('#whatSports').addEventListener("change",function () {
     var ul = document.getElementById('centerInfo');
     var lis = document.getElementsByTagName('li');
     var br = document.getElementsByTagName('br');
-
+    var a = document.getElementsByTagName('a');
     var leftLength = $('#newsInfo > li').length;
     var centerLength = $('#centerInfo > li').length;
     var centerbrLength = $('#centerInfo > br').length;
+    var centerA = $('#centerInfo > a').length;
     for ( var i =leftLength-1;i>=0;i--)
         ol.removeChild(lis[i]);
-    for (var i = centerLength-1;i>=0;i--)
+    for (var i = centerLength-1;i>=0;i--) {
+        ul.removeChild(a[i]);
         ul.removeChild(lis[i]);
-    for (var i = centerbrLength - 1;i>=0;i--)
+    }
+    for (var i = centerbrLength ;i>=0;i--)
         ul.removeChild(br[i]);
 
 

@@ -19,7 +19,10 @@ for (var i = 0;i< data['gameInfo'].length;i++) {
         x = x+1;
         a.appendChild(text);
         p.innerText = data['gameInfo'][i][y][0];
-        p2.innerText = data['gameInfo'][i][y][1];
+        if(data['gameInfo'][i][y][1] = 'undefined')
+            p2.innerText = '현재 경기중이 아닙니다';
+        else
+            p2.innerText = data['gameInfo'][i][y][1];
         li.appendChild(teamImg);
         li.appendChild(p);
         li.appendChild(p2);
