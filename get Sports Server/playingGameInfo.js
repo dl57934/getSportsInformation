@@ -71,7 +71,7 @@ function getGameInfo(url,socket,whatGame){
                 else if(whatGame[3]  == 'wbaseball'){
                     var gameBoardLength = document.querySelectorAll('#_tab_box_mlb > div > ul > li > div.btn_wrap > a').length;
                     var todayGame = document.querySelectorAll('#_tab_group_0 > a').length;
-                    var gameBoard = document.querySelectorAll('#_tab_box_mlb > a.btn');
+                    var gameBoard = document.querySelectorAll('#_tab_box_mlb > div > ul > li:nth-child(9) > div.btn_wrap > a ');
                     if(todayGame != 0) {
                         teamLength = document.querySelectorAll('#_tab_box_mlb > div > ul > li').length;
                         gameInfo.push(document.getElementById('_tab_box_mlb').innerText);
@@ -81,9 +81,15 @@ function getGameInfo(url,socket,whatGame){
                             var teamImg2 = document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
                             teamImg.push(teamImg2);
                         }
-                        for (var i=1;i<=gameBoardLength; i++)
-                                href.push(document.querySelector('#_tab_box_mlb > div > ul > li:nth-child('+i+') > div.btn_wrap > a').href);
+                        for (var i=1;i <= teamLength; i++) {
+                            if(document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
+                                href.push(document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').href);
+                            else{
+                                href.push(document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a').href);
+                            }
 
+
+                        }
                     }else {
                         gameInfo['gameInfo'] ='오늘은 경기가 없습니다.';
                     }
