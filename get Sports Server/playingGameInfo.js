@@ -107,8 +107,12 @@ function getGameInfo(url,socket,whatGame){
                 return game;
             });
         }).then(function (content) {
-            for(var i = 0;i<content['gameInfo'].length;i++)
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/\n/gi,"");
+            for(var i = 0;i<content['gameInfo'].length;i++) {
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/\n/gi, "");
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/TV/gi,',');
+                content['gameInfo'][i] = content['gameInfo'][i].replace('/영상/gi',',');
+                content['gameInfo'][i] = content['gameInfo'][i].split(',');
+            }
             _page.close();
             _ph.exit();
             console.log(content);
