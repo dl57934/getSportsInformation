@@ -18,10 +18,20 @@ document.querySelector('#whatSports').addEventListener("change",function () {
             'whatMajor':majorNum[0]
         ,'majorNum':majorNum[1]}
         });
-    var ol = document.getElementById('ol');
+    var ol = document.getElementById('newsInfo');
+    var ul = document.getElementById('centerInfo');
     var lis = document.getElementsByTagName('li');
-    var liLength = $('#ol > li').length;
-    for ( var i =liLength-1;i>=0;i--)
+    var br = document.getElementsByTagName('br');
+
+    var leftLength = $('#newsInfo > li').length;
+    var centerLength = $('#centerInfo > li').length;
+    var centerbrLength = $('#centerInfo > br').length;
+    for ( var i =leftLength-1;i>=0;i--)
         ol.removeChild(lis[i]);
+    for (var i = centerLength-1;i>=0;i--)
+        ul.removeChild(lis[i]);
+    for (var i = centerbrLength - 1;i>=0;i--)
+        ul.removeChild(br[i]);
+
 
 });

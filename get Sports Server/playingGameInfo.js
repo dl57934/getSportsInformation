@@ -17,9 +17,9 @@ function getGameInfo(url,socket,whatGame){
                 var teamImg = [];
                 var teamLength = '';
                 var competition;
+                var href = []
                 if (whatGame[3] == 'wfootball'){
                     var todayGameLeauge = document.querySelectorAll('#_tab_group_0 > a').length;
-                     competition = document.querySelectorAll('._tab_box  > div > ul > li').length;
                     whereleauge = document.querySelectorAll('#_tab_group_0 > a');
                     var img = document.querySelectorAll('img');
                     for(var i =0; i< todayGameLeauge ;i++)
@@ -69,7 +69,9 @@ function getGameInfo(url,socket,whatGame){
                     }
                 }
                 else if(whatGame[3]  == 'wbaseball'){
+                    var gameBoardLength = document.querySelectorAll('#_tab_box_mlb > div > ul > li > div.btn_wrap > a').length;
                     var todayGame = document.querySelectorAll('#_tab_group_0 > a').length;
+                    var gameBoard = document.querySelectorAll('#_tab_box_mlb > a.btn');
                     if(todayGame != 0) {
                         teamLength = document.querySelectorAll('#_tab_box_mlb > div > ul > li').length;
                         gameInfo.push(document.getElementById('_tab_box_mlb').innerText);
@@ -79,6 +81,9 @@ function getGameInfo(url,socket,whatGame){
                             var teamImg2 = document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
                             teamImg.push(teamImg2);
                         }
+                        for (var i=1;i<=gameBoardLength; i++)
+                                href.push(document.querySelector('#_tab_box_mlb > div > ul > li:nth-child('+i+') > div.btn_wrap > a').href);
+
                     }else {
                         gameInfo['gameInfo'] ='오늘은 경기가 없습니다.';
                     }
@@ -103,14 +108,18 @@ function getGameInfo(url,socket,whatGame){
                         gameInfo.push('오늘은 경기가 없습니다.');
                     }
                 }
-                var game = {'gameInfo':gameInfo,'teamImg':teamImg};
+                var game = {'gameInfo':gameInfo,'teamImg':teamImg, 'href':href};
                 return game;
             });
         }).then(function (content) {
             for(var i = 0;i<content['gameInfo'].length;i++) {
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/\n/gi, "");
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/TV/gi,',');
-                content['gameInfo'][i] = content['gameInfo'][i].replace('/영상/gi',',');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/TV/gi,'');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/영상/gi,',');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/전력비교/gi,',');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/전력/gi,',');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/종료기록/gi,'\n종료');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/경기취소/gi,'\n경기취소');
                 content['gameInfo'][i] = content['gameInfo'][i].split(',');
             }
             _page.close();
