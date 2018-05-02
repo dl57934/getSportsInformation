@@ -134,6 +134,7 @@ function getGameInfo(url,socket,whatGame){
                             var teamImg2 = img[i + 1].src;
                             teamImg.push(teamImg2);
                         }
+
                     }else {
                         gameInfo.push('오늘은 경기가 없습니다.');
                     }
@@ -150,6 +151,7 @@ function getGameInfo(url,socket,whatGame){
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/전력/gi,',');
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/문자중계/gi,',');
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/문자/gi,',');
+                content['gameInfo'][i] = content['gameInfo'][i].replace(/중계/gi,',');
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/종료기록/gi,'\n종료');
                 content['gameInfo'][i] = content['gameInfo'][i].replace(/경기취소/gi,'\n경기취소');
                 content['gameInfo'][i] = content['gameInfo'][i].split(',');
