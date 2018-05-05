@@ -19,7 +19,7 @@ for (var i = 0;i< data['gameInfo'].length;i++) {
         x = x+1;
         a.appendChild(text);
         p.innerText = data['gameInfo'][i][y][0];
-        if(data['gameInfo'][i][y][1] = 'undefined')
+        if(data['gameInfo'][i][y][1] == 'undefined')
             p2.innerText = '현재 경기중이 아닙니다';
         else
             p2.innerText = data['gameInfo'][i][y][1];
@@ -33,9 +33,11 @@ for (var i = 0;i< data['gameInfo'].length;i++) {
         z = z + 2;
     }
 }
-    $("ul").click(function () {
-        var a = $("ul").index(this);
-        var href = $("ul:eq(" + a + ") > a").attr("href");
+    $("a").click(function () {
+        var a = $("a").index(this);
+        var href = $("a:eq(" + a + ") ").attr("href");
+        alert(a);
+        alert(href);
         chrome.tabs.create({url:href});
     });
 });
