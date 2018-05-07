@@ -5,21 +5,21 @@ var http = require('http'), express = require('express'),
 var app =  express();
 app.use(body.urlencoded({extended:false}));
 app.use(body.json());
-app.use('/',function (req,res) {
+app.use('/',(req,res)=> {
    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});
    res.write('<h1>getSports Server</h1>')
 });
 
 
-http.createServer(app).listen(3000,function () {
+http.createServer(app).listen(3000,()=> {
     console.log('포트 3000에 연결됬습니다');
 });
 var io = require('socket.io').listen(8000);
 
 
-io.sockets.on('connection',function (socket) {
+io.sockets.on('connection',(socket)=> {
     console.log('connect');
-    socket.on('major',function (message) {
+    socket.on('major',(message)=> {
        sportsInfo(message,socket);
     });
 });

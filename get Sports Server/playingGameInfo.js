@@ -1,13 +1,15 @@
 var phantom = require('phantom');
 var _ph, _page, _outObj;
 function getGameInfo(url,socket,whatGame){
-        phantom.create().then(function (ph) {
+        phantom.create().then( function (ph)
+         {
             _ph = ph;
             return _ph.createPage();
-        }).then(function (page) {
+        }).then(function (page)
+         {
             _page = page;
             return _page.open(url);
-        }).then(function (status) {
+        }).then( function(status) {
             return _page.evaluate(function() {
                 var pageUrl = window.location.href;
                 var tableName = [];
@@ -142,24 +144,22 @@ function getGameInfo(url,socket,whatGame){
                 var game = {'gameInfo':gameInfo,'teamImg':teamImg, 'href':href};
                 return game;
             });
-        }).then(function (content) {
-            for(var i = 0;i<content['gameInfo'].length;i++) {
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/\n/gi, "");
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/TV/gi,'');
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/영상/gi,',');
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/전력비교/gi,',');
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/전력/gi,',');
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/문자중계/gi,',');
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/문자/gi,',');
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/중계/gi,',');
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/종료기록/gi,'\n종료');
-                content['gameInfo'][i] = content['gameInfo'][i].replace(/경기취소/gi,'\n경기취소');
-                content['gameInfo'][i] = content['gameInfo'][i].split(',');
-            }
-            _page.close();
-            _ph.exit();
-            console.log(content);
-            socket.emit('centerInfo',content);
+        }).then(function(content) {
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/\n/gi, ""));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/TV/gi,''));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/영상/gi,','));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/전력비교/gi,','));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/전력/gi,','));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/문자중계/gi,','));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/문자/gi,','));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/중계/gi,','));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/종료기록/gi,'\n종료'));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/경기취소/gi,'\n경기취소'));
+                content['gameInfo'] = content['gameInfo'].map((x)=>x.split(','));
+                _page.close();
+                _ph.exit();
+                console.log(content);
+                socket.emit('centerInfo',content);
         })
 }
 
