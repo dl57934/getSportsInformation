@@ -13,13 +13,16 @@ function getGameInfo(url,socket,whatGame){
             return _page.evaluate(function() {
                 var pageUrl = window.location.href;
                 var tableName = [];
-                var gameInfo = [];
+                var gameInfo = {};
                 var whatGame = pageUrl.split('/');
                 var whereleauge ;
                 var teamImg = [];
                 var teamLength = '';
                 var competition;
-                var href = []
+                var href = [];
+                var team1array = [];
+                var team2array = [];
+                var statusArray = [];
                 if (whatGame[3] == 'wfootball'){
                     var todayGameLeauge = document.querySelectorAll('#_tab_group_0 > a').length;
                     whereleauge = document.querySelectorAll('#_tab_group_0 > a');
@@ -34,8 +37,20 @@ function getGameInfo(url,socket,whatGame){
                         i=i+1;
                     }
                     for(var i = 0; i< tableName.length;i++) {
-                        gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/ /gi, ""));
+                        //gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/ /gi, ""));
+                        var v = document.querySelectorAll("#"+tableName[i]+"> div > ul > li").length;
+                        for (var  j = 1; j <= v;j++){
+                        var team1Info = document.querySelector("#"+tableName[i]+"> div > ul > li:nth-child("+j+") > div.vs_list.vs_list1 > div").innerText;  
+                        var team2Info = document.querySelector("#"+tableName[i] +"> div > ul > li:nth-child("+j+") > div.vs_list.vs_list2 > div").innerText;
+                        var status =  document.querySelector("#"+tableName[i]+"> div > ul > li:nth-child("+j+") > div.state").innerText;
+                        team1array.push(team1Info);
+                        team2array.push(team2Info);
+                        statusArray.push(status);
+                        }
                     }
+                        gameInfo['team1Info'] = team1array;  
+                        gameInfo['team2Info'] = team2array;
+                        gameInfo['status'] = statusArray;
                     for(var i = 0; i< tableName.length;i++) {
                         teamLength = document.querySelectorAll('#'+tableName[i]+' > div > ul > li').length;
                         for(var y= 1;y<= teamLength;y++) {
@@ -145,17 +160,13 @@ function getGameInfo(url,socket,whatGame){
                 return game;
             });
         }).then(function(content) {
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/\n/gi, ""));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/TV/gi,''));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/영상/gi,','));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/전력비교/gi,','));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/전력/gi,','));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/문자중계/gi,','));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/문자/gi,','));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/중계/gi,','));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/종료기록/gi,'\n종료'));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.replace(/경기취소/gi,'\n경기취소'));
-                content['gameInfo'] = content['gameInfo'].map((x)=>x.split(','));
+                console.log(content);
+                content['gameInfo']['team1Info'] = content['gameInfo']['team1Info'].map((x)=>x.replace(/\n/gi, ""));
+                content['gameInfo']['team2Info'] = content['gameInfo']['team2Info'].map((x)=>x.replace(/\n/gi,''));
+                content['gameInfo']['status'] = content['gameInfo']['status'].map((x)=>x.replace(/\n/gi,''));
+                content['gameInfo']['team1Info'] = content['gameInfo']['team1Info'].map((x)=>x.replace(/ /gi,''));
+                content['gameInfo']['team2Info'] = content['gameInfo']['team2Info'].map((x)=>x.replace(/ /gi,''));
+                content['gameInfo']['status'] = content['gameInfo']['status'].map((x)=>x.replace(/ /gi,''));
                 _page.close();
                 _ph.exit();
                 console.log(content);
