@@ -26,8 +26,8 @@ for (var i = 0;i< data['gameInfo']['team1Info'].length;i++) {
         li.appendChild(p2);
         li.appendChild(teamImg2);
         li.appendChild(br);
-    if(data['href'][x]!=null) {
-        a.setAttribute('href', data['href'][x]);
+    if(data['href'][i]!=null) {
+        a.setAttribute('href', data['href'][i]);
         a.appendChild(text);
         ul.appendChild(a);
     }
@@ -37,8 +37,6 @@ for (var i = 0;i< data['gameInfo']['team1Info'].length;i++) {
     $("a").click(function () {
         var a = $("a").index(this);
         var href = $("a:eq(" + a + ") ").attr("href");
-        alert(a);
-        alert(href);
         chrome.tabs.create({url:href});
     });
 });
