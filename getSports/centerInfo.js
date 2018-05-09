@@ -1,8 +1,7 @@
 socket.on('centerInfo',function (data) {
 var ul = document.getElementById('centerInfo');
 var z = 0, x=0;
-for (var i = 0;i< data['gameInfo'].length;i++) {
-    for (var y = 0; y < data['gameInfo'][i].length-1; y++) {
+for (var i = 0;i< data['gameInfo']['team1Info'].length;i++) {
         var li = document.createElement('li');
         var teamImg = document.createElement('img');
         var teamImg2 = document.createElement('img');
@@ -11,27 +10,29 @@ for (var i = 0;i< data['gameInfo'].length;i++) {
         var br = document.createElement('br');
         var a = document.createElement('a');
         var text = document.createTextNode('게임 정보');
+        var status = document.createElement('p');
         ul.appendChild(li);
-        data['gameInfo'][i][y] = data['gameInfo'][i][y].split('\n');
-        teamImg.setAttribute('src', data['teamImg'][z]);
-        teamImg2.setAttribute('src', data['teamImg'][z + 1]);
-        a.setAttribute('href',data['href'][x]);
-        x = x+1;
-        a.appendChild(text);
-        p.innerText = data['gameInfo'][i][y][0];
-        if(data['gameInfo'][i][y][1] == 'undefined')
-            p2.innerText = '현재 경기중이 아닙니다';
-        else
-            p2.innerText = data['gameInfo'][i][y][1];
+        teamImg.setAttribute('src', data['teamImg'][x]);
+        teamImg2.setAttribute('src', data['teamImg'][x + 1]);
+
+        x = x + 2;
+
+        p.innerText = data['gameInfo']['team1Info'][i];
+        p2.innerText = data['gameInfo']['team2Info'][i];
+        status.innerText = data['gameInfo']['status'][i];
         li.appendChild(teamImg);
         li.appendChild(p);
+        li.appendChild(status);
         li.appendChild(p2);
         li.appendChild(teamImg2);
         li.appendChild(br);
+    if(data['href'][x]!=null) {
+        a.setAttribute('href', data['href'][x]);
+        a.appendChild(text);
         ul.appendChild(a);
+    }
         ul.appendChild(br);
         z = z + 2;
-    }
 }
     $("a").click(function () {
         var a = $("a").index(this);

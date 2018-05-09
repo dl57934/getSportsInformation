@@ -7,7 +7,7 @@ app.use(body.urlencoded({extended:false}));
 app.use(body.json());
 app.use('/',(req,res)=> {
    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});
-   res.write('<h1>getSports Server</h1>')
+   res.write('<h1>getSports Server</h1>');
 });
 
 

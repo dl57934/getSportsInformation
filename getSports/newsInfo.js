@@ -1,7 +1,7 @@
 socket.on('newsInfo',function (data) {
     var name= [];
     for(var i = 0 ;i<data['newsLength'];i++)
-        name.push(data['news'][i+2]+'\n');
+        name.push(data['news'][i+2]);
     var ol = document.getElementById('newsInfo');
     for (var i = 0; i < data['newsLength']; i++){
         var li = document.createElement('li');
