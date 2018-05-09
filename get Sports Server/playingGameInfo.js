@@ -109,6 +109,10 @@ function getGameInfo(url,socket,whatGame){
                             team2array.push(team2Info);
                             statusArray.push(status);
                         }
+
+                        gameInfo['team1Info'] = team1array;  
+                        gameInfo['team2Info'] = team2array;
+                        gameInfo['status'] = statusArray;
                         for (var i = 1;i<= teamLength;i++){
                             if(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
                                 href.push(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').href);
@@ -163,8 +167,20 @@ function getGameInfo(url,socket,whatGame){
                         var whereLeague = document.querySelectorAll('#_tab_group_0 > a');
                         for (var i = 0; i < tableNum; i++)
                             tableName.push('_tab_box_' + whereLeague[i].getAttribute('data-key'));
-                        for (var i = 0; i < tableName.length; i++)
-                            gameInfo.push(document.getElementById(tableName[i]).innerText.replace(/ /gi,''));
+                        for (var i = 0; i < tableName.length; i++){                        
+                        var v = document.querySelectorAll("#"+tableName[i]+"> div > ul > li").length;
+                        for (var  j = 1; j <= v;j++){
+                            var team1Info = document.querySelector("#"+tableName[i]+"> div > ul > li:nth-child("+j+") > div.vs_list.vs_list1 > div").innerText;
+                            var team2Info = document.querySelector("#"+tableName[i]+" > div > ul > li:nth-child("+j+") > div.vs_list.vs_list2 > div").innerText;
+                            var status =  document.querySelector("#"+tableName[i]+"> div > ul > li:nth-child("+j+") > div.state").innerText;
+                            team1array.push(team1Info);
+                            team2array.push(team2Info);
+                            statusArray.push(status);
+                                }
+                            }             
+                        gameInfo['team1Info'] = team1array;  
+                        gameInfo['team2Info'] = team2array;
+                        gameInfo['status'] = statusArray;
                         for (var i = 0;i<img.length;i=i+2) {
                             var teamImg1 = img[i].src;
                             teamImg.push(teamImg1);
