@@ -70,6 +70,12 @@ function getGameInfo(url,socket,whatGame){
                         teamLength = document.querySelectorAll('#_tab_box_kovo > div > ul > li').length;
                         gameInfo.push(document.getElementById('_tab_box_kovo').innerText);
                         for (var i = 1; i <= teamLength; i++) {
+                            var team1Info = document.querySelector("#_tab_box_kovo > div > ul > li:nth-child("+i+") > div.vs_list.vs_list1 > div").innerText;
+                            var team2Info = document.querySelector("#_tab_box_kovo > div > ul > li:nth-child("+i+") > div.vs_list.vs_list2 > div").innerText;
+                            var status =  document.querySelector("#_tab_box_kovo> div > ul > li:nth-child("+i+") > div.state").innerText;
+                            team1array.push(team1Info);
+                            team2array.push(team2Info);
+                            statusArray.push(status);
                             var teamImg1 = document.querySelector('#_tab_box_kovo> div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list1 > div > img').src;
                             teamImg.push(teamImg1);
                             var teamImg2 = document.querySelector('#_tab_box_kovo > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
@@ -91,12 +97,17 @@ function getGameInfo(url,socket,whatGame){
                     var todayGame = document.querySelectorAll('#_tab_group_0 > a').length;
                     if(todayGame != 0) {
                         teamLength = document.querySelectorAll('#_tab_box_kbo > div > ul > li').length;
-                        gameInfo.push(document.getElementById('_tab_box_kbo').innerText);
                         for (var i = 1; i <= teamLength; i++) {
                             var teamImg1 = document.querySelector('#_tab_box_kbo> div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list1 > div > img').src;
                             teamImg.push(teamImg1);
                             var teamImg2 = document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
                             teamImg.push(teamImg2);
+                            var team1Info = document.querySelector("#_tab_box_kbo > div > ul > li:nth-child("+i+") > div.vs_list.vs_list1 > div").innerText;
+                            var team2Info = document.querySelector("#_tab_box_kbo > div > ul > li:nth-child("+i+") > div.vs_list.vs_list2 > div").innerText;
+                            var status =  document.querySelector("#_tab_box_kbo> div > ul > li:nth-child("+i+") > div.state").innerText;
+                            team1array.push(team1Info);
+                            team2array.push(team2Info);
+                            statusArray.push(status);
                         }
                         for (var i = 1;i<= teamLength;i++){
                             if(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
@@ -115,13 +126,22 @@ function getGameInfo(url,socket,whatGame){
                     var gameBoard = document.querySelectorAll('#_tab_box_mlb > div > ul > li:nth-child(9) > div.btn_wrap > a ');
                     if(todayGame != 0) {
                         teamLength = document.querySelectorAll('#_tab_box_mlb > div > ul > li').length;
-                        gameInfo.push(document.getElementById('_tab_box_mlb').innerText);
                         for (var i = 1; i <= teamLength; i++) {
                             var teamImg1 = document.querySelector('#_tab_box_mlb> div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list1 > div > img').src;
                             teamImg.push(teamImg1);
                             var teamImg2 = document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.vs_list.vs_list2 > div > img').src;
                             teamImg.push(teamImg2);
+                            var team1Info = document.querySelector("#_tab_box_mlb > div > ul > li:nth-child("+i+") > div.vs_list.vs_list1 > div").innerText;
+                            var team2Info = document.querySelector("#_tab_box_mlb > div > ul > li:nth-child("+i+") > div.vs_list.vs_list2 > div").innerText;
+                            var status =  document.querySelector("#_tab_box_mlb > div > ul > li:nth-child("+i+") > div.state").innerText;
+                            team1array.push(team1Info);
+                            team2array.push(team2Info);
+                            statusArray.push(status);
                         }
+                        
+                        gameInfo['team1Info'] = team1array;  
+                        gameInfo['team2Info'] = team2array;
+                        gameInfo['status'] = statusArray;
                         for (var i=1;i <= teamLength; i++) {
                             if(document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
                                 href.push(document.querySelector('#_tab_box_mlb > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').href);
