@@ -109,15 +109,19 @@ function getGameInfo(url,socket,whatGame){
                             team2array.push(team2Info);
                             statusArray.push(status);
                         }
-
+                        
+                        teamLength = document.querySelectorAll('#_tab_box_kbo > div > ul > li').length;
                         gameInfo['team1Info'] = team1array;  
                         gameInfo['team2Info'] = team2array;
                         gameInfo['status'] = statusArray;
                         for (var i = 1;i<= teamLength;i++){
-                            if(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
-                                href.push(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').href);
-                            else{
-                                href.push(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a').href);
+                            try{
+                                if(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').innerText == '기록')
+                                    href.push(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a:nth-child(1)').href);
+                                else
+                                    href.push(document.querySelector('#_tab_box_kbo > div > ul > li:nth-child(' + i + ') > div.btn_wrap > a').href);
+                            }catch(err){
+                            href.push(false);
                             }
                         }
                     }else {
@@ -197,9 +201,9 @@ function getGameInfo(url,socket,whatGame){
             });
         }).then(function(content) {
                 console.log(content);
-                content['gameInfo']['team1Info'] = content['gameInfo']['team1Info'].map((x)=>x.replace(/\n/gi, ""));
-                content['gameInfo']['team2Info'] = content['gameInfo']['team2Info'].map((x)=>x.replace(/\n/gi,''));
-                content['gameInfo']['status'] = content['gameInfo']['status'].map((x)=>x.replace(/\n/gi,''));
+                content['gameInfo']['team1Info'] = content['gameInfo']['team1Info'].map((x)=>x.replace(/\n/gi, " "));
+                content['gameInfo']['team2Info'] = content['gameInfo']['team2Info'].map((x)=>x.replace(/\n/gi,' '));
+                content['gameInfo']['status'] = content['gameInfo']['status'].map((x)=>x.replace(/\n/gi,' '));
                 content['gameInfo']['team1Info'] = content['gameInfo']['team1Info'].map((x)=>x.replace(/ /gi,''));
                 content['gameInfo']['team2Info'] = content['gameInfo']['team2Info'].map((x)=>x.replace(/ /gi,''));
                 content['gameInfo']['status'] = content['gameInfo']['status'].map((x)=>x.replace(/ /gi,''));
