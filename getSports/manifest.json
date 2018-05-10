@@ -1,6 +1,6 @@
 {
-  "name": "SPORTS INFO",
-  "version": "1.0",
+  "name": "스포츠 정보 모아 보자",
+  "version": "1.2",
   "description": "get SPORTS INFO",
   "manifest_version": 2,
   "browser_action": {
@@ -9,5 +9,6 @@
   },
   "permissions":[
     "activeTab",
-    "storage"]
+    "storage",
+    "alarms"]
 }

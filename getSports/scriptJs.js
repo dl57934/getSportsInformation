@@ -1,4 +1,4 @@
-var socket = io.connect('http://192.168.99.100:8888');
+var socket = io.connect('http://192.168.99.100:8000');
 socket.on('connect',function () {
    console.log('Client connected');
 });
