@@ -11,10 +11,10 @@ app.use('/',(req,res)=> {
 });
 
 
-http.createServer(app).listen(6006,()=> {
-    console.log('포트 6006에 연결됬습니다');
+http.createServer(app).listen(3000,()=> {
+    console.log('포트 3000 연결됬습니다');
 });
-var io = require('socket.io').listen(8888);
+var io = require('socket.io').listen(8000);
 
 
 io.sockets.on('connection',(socket)=> {
