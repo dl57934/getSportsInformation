@@ -1,6 +1,6 @@
 {
   "name": "스포츠 정보 모아 보자",
-  "version": "1.3",
+  "version": "1.4",
   "description": "get SPORTS INFO",
   "manifest_version": 2,
   "browser_action": {
