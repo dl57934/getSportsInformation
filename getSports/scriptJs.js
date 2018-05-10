@@ -8,24 +8,7 @@ chrome.storage.sync.get(function (data) {
     socket.emit('major', data.whatMajor['whatMajor']);
 });
 let clickNum = 0;
-function removeGameInfo(){
 
-    var ul = document.getElementById('centerInfo');
-    var lis = document.getElementsByTagName('li');
-    var br = document.getElementsByTagName('br');
-    var a = document.getElementsByTagName('a');
-
-    var centerLength = $('#centerInfo > li').length;
-    var centerbrLength = $('#centerInfo > br').length;
-    var centerA = $('#centerInfo > a').length;
-
-    for (var i = centerLength-1;i>=0;i--)
-        ul.removeChild(lis[i]);
-    for (var i = centerLength-1;i>=0;i--)
-        ul.removeChild(a[i]);
-    for (var i = centerbrLength-1;i>=0;i--)
-        ul.removeChild(br[i]);
-}
 
 document.querySelector('#whatSports').addEventListener("change",function () {
     var majorNum = document.querySelector('#whatSports').value;
@@ -39,13 +22,10 @@ document.querySelector('#whatSports').addEventListener("change",function () {
                 , 'majorNum': majorNum[1]
             }
         });
-        var ol = document.getElementById('newsInfo');
-        var leftLength = $('#newsInfo > li').length;
-        var lis = document.getElementsByTagName('li');
-        for ( var i =leftLength-1;i>=0;i--)
-            ol.removeChild(lis[i]);
 
-        removeGameInfo();
+        $('.li').remove();
+        $('#centerInfo > br').remove();
+        $('#newsInfo > li').remove();
     }catch (err){
 
     }
@@ -53,7 +33,8 @@ document.querySelector('#whatSports').addEventListener("change",function () {
 });
 
 document.querySelector('#leftArrow').addEventListener('click',()=>{
-    removeGameInfo();
+    $('.li').remove();
+    $('#centerInfo > br').remove();
     clickNum -=1;
    let date = new Date();
    let dd = date.getDate()+clickNum;
@@ -67,8 +48,9 @@ document.querySelector('#leftArrow').addEventListener('click',()=>{
     socket.emit('changeDay',{'fullday':fullday,'majorNum':majorNum});
 });
 document.querySelector('#rightArrow').addEventListener('click',()=>{
-    removeGameInfo();
-    clickNum += 1;
+    $('.li').remove();
+    $('#centerInfo > br').remove();
+    clickNum +=1;
     let date = new Date();
     let dd = date.getDate()+clickNum;
     let mm = date.getMonth()+1;

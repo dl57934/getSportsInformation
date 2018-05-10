@@ -20,6 +20,7 @@ for (var i = 0;i< data['gameInfo']['team1Info'].length;i++) {
         p.innerText = data['gameInfo']['team1Info'][i];
         p2.innerText = data['gameInfo']['team2Info'][i];
         status.innerText = data['gameInfo']['status'][i];
+        li.setAttribute('class','li');
         li.appendChild(teamImg);
         li.appendChild(p);
         li.appendChild(status);
@@ -28,6 +29,7 @@ for (var i = 0;i< data['gameInfo']['team1Info'].length;i++) {
         li.appendChild(br);
     if(data['href'][i]!=null) {
         a.setAttribute('href', data['href'][i]);
+        a.setAttribute('class','li')
         a.appendChild(text);
         ul.appendChild(a);
     }
