@@ -22,6 +22,9 @@ io.sockets.on('connection',(socket)=> {
     socket.on('major',(message)=> {
        sportsInfo(message,socket);
     });
+    socket.on('changeDay',(message)=>{
+
+    });
 });
 
 

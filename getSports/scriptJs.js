@@ -7,22 +7,8 @@ chrome.storage.sync.get(function (data) {
     document.querySelector("#whatSports").options[data.whatMajor['majorNum']-1].setAttribute('selected','selected');
     socket.emit('major', data.whatMajor['whatMajor']);
 });
-
-
-document.querySelector('#whatSports').addEventListener("change",function () {
-    var majorNum = document.querySelector('#whatSports').value;
-    majorNum = majorNum.split(',');
-    socket.emit('major', majorNum[0]);
-    try {
-        chrome.storage.sync.set({
-            whatMajor: {
-                'whatMajor': majorNum[0]
-                , 'majorNum': majorNum[1]
-            }
-        });
-    }catch (err){
-
-    }
+let clickNum = 0;
+function removeGameInfo(){
     var ol = document.getElementById('newsInfo');
     var ul = document.getElementById('centerInfo');
     var lis = document.getElementsByTagName('li');
@@ -40,4 +26,36 @@ document.querySelector('#whatSports').addEventListener("change",function () {
         ul.removeChild(a[i]);
     for (var i = centerbrLength-1;i>=0;i--)
         ul.removeChild(br[i]);
+}
+
+document.querySelector('#whatSports').addEventListener("change",function () {
+    var majorNum = document.querySelector('#whatSports').value;
+    majorNum = majorNum.split(',');
+    socket.emit('major', majorNum[0]);
+    try {
+        chrome.storage.sync.set({
+            whatMajor: {
+                'whatMajor': majorNum[0]
+                , 'majorNum': majorNum[1]
+            }
+        });
+    }catch (err){
+
+    }
+    removeGameInfo();
+});
+
+document.querySelector('#leftArrow').addEventListener('click',()=>{
+    removeGameInfo();
+    clickNum -=1;
+   let date = new Date();
+   let dd = date.getDate()+clickNum;
+   let mm = date.getMonth()+1;
+   let yyyy = date.getFullYear();
+    if(dd <10) dd='0'+dd;
+    if (mm<10) mm='0'+mm;
+    var fullday = yyyy+''+mm+''+dd;
+    var majorNum = document.querySelector('#whatSports').value;
+    majorNum = majorNum.split(',');
+    socket.emit('changeDay',{'fullday':fullday,'majorNum':majorNum});
 });
