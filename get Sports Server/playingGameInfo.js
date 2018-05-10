@@ -1,6 +1,6 @@
 var phantom = require('phantom');
 var _ph, _page, _outObj;
-function getGameInfo(url,socket,whatGame){
+function getGameInfo(url,socket){
         phantom.create().then( function (ph)
          {
             _ph = ph;

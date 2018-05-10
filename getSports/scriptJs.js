@@ -9,17 +9,16 @@ chrome.storage.sync.get(function (data) {
 });
 let clickNum = 0;
 function removeGameInfo(){
-    var ol = document.getElementById('newsInfo');
+
     var ul = document.getElementById('centerInfo');
     var lis = document.getElementsByTagName('li');
     var br = document.getElementsByTagName('br');
     var a = document.getElementsByTagName('a');
-    var leftLength = $('#newsInfo > li').length;
+
     var centerLength = $('#centerInfo > li').length;
     var centerbrLength = $('#centerInfo > br').length;
     var centerA = $('#centerInfo > a').length;
-    for ( var i =leftLength-1;i>=0;i--)
-        ol.removeChild(lis[i]);
+
     for (var i = centerLength-1;i>=0;i--)
         ul.removeChild(lis[i]);
     for (var i = centerLength-1;i>=0;i--)
@@ -32,6 +31,7 @@ document.querySelector('#whatSports').addEventListener("change",function () {
     var majorNum = document.querySelector('#whatSports').value;
     majorNum = majorNum.split(',');
     socket.emit('major', majorNum[0]);
+    clickNum=0;
     try {
         chrome.storage.sync.set({
             whatMajor: {
@@ -39,10 +39,17 @@ document.querySelector('#whatSports').addEventListener("change",function () {
                 , 'majorNum': majorNum[1]
             }
         });
+        var ol = document.getElementById('newsInfo');
+        var leftLength = $('#newsInfo > li').length;
+        var lis = document.getElementsByTagName('li');
+        for ( var i =leftLength-1;i>=0;i--)
+            ol.removeChild(lis[i]);
+
+        removeGameInfo();
     }catch (err){
 
     }
-    removeGameInfo();
+
 });
 
 document.querySelector('#leftArrow').addEventListener('click',()=>{
@@ -52,6 +59,20 @@ document.querySelector('#leftArrow').addEventListener('click',()=>{
    let dd = date.getDate()+clickNum;
    let mm = date.getMonth()+1;
    let yyyy = date.getFullYear();
+    if(dd <10) dd='0'+dd;
+    if (mm<10) mm='0'+mm;
+    var fullday = yyyy+''+mm+''+dd;
+    var majorNum = document.querySelector('#whatSports').value;
+    majorNum = majorNum.split(',');
+    socket.emit('changeDay',{'fullday':fullday,'majorNum':majorNum});
+});
+document.querySelector('#rightArrow').addEventListener('click',()=>{
+    removeGameInfo();
+    clickNum += 1;
+    let date = new Date();
+    let dd = date.getDate()+clickNum;
+    let mm = date.getMonth()+1;
+    let yyyy = date.getFullYear();
     if(dd <10) dd='0'+dd;
     if (mm<10) mm='0'+mm;
     var fullday = yyyy+''+mm+''+dd;

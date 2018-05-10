@@ -8,12 +8,14 @@ if(dd <10) dd='0'+dd;
 if (mm<10) mm='0'+mm;
 var fullday = yyyy+''+mm+''+dd;
 console.log(fullday);
-let getSportsInfo = (whatMajor,socket) =>{
+exports.getSportsInfo = (whatMajor,socket) =>{
     var fullUrl = 'http://sports.news.naver.com/'+whatMajor+ '/index.nhn';
     var fullGameInfo = 'http://sports.news.naver.com/'+whatMajor+'/ajax/templateMatchBox.nhn?date='+fullday;
     getHtml(fullUrl,socket);
-    getGameInfo(fullGameInfo,socket,whatMajor);
+    getGameInfo(fullGameInfo,socket);
+}
+exports.changeDayGameInfo = (whatMajor,socket, fullday)=>{
+    var fullGameInfo = 'http://sports.news.naver.com/'+whatMajor+'/ajax/templateMatchBox.nhn?date='+fullday;
+    getGameInfo(fullGameInfo,socket);
 }
 
-
-module.exports = getSportsInfo;

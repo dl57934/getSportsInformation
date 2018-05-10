@@ -1,6 +1,7 @@
 var http = require('http'), express = require('express'),
     session = require('express-session'), static = require('serve-static'),
-    body = require('body-parser'),sportsInfo = require('./getSportsInfo');
+    body = require('body-parser'),sportsInfo = require('./getSportsInfo'),
+    changeDayGameInfo = require('./');
 
 var app =  express();
 app.use(body.urlencoded({extended:false}));
@@ -20,10 +21,10 @@ var io = require('socket.io').listen(8000);
 io.sockets.on('connection',(socket)=> {
     console.log('connect');
     socket.on('major',(message)=> {
-       sportsInfo(message,socket);
+       sportsInfo.getSportsInfo(message,socket);
     });
     socket.on('changeDay',(message)=>{
-	console.log(message);
+	sportsInfo.changeDayGameInfo(message['majorNum'][0],socket,message['fullday']);
     });
 });
 
