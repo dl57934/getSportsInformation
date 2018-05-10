@@ -201,12 +201,9 @@ function getGameInfo(url,socket,whatGame){
             });
         }).then(function(content) {
                 console.log(content);
-                content['gameInfo']['team1Info'] = content['gameInfo']['team1Info'].map((x)=>x.replace(/\n/gi, " "));
-                content['gameInfo']['team2Info'] = content['gameInfo']['team2Info'].map((x)=>x.replace(/\n/gi,' '));
-                content['gameInfo']['status'] = content['gameInfo']['status'].map((x)=>x.replace(/\n/gi,' '));
-                content['gameInfo']['team1Info'] = content['gameInfo']['team1Info'].map((x)=>x.replace(/ /gi,''));
-                content['gameInfo']['team2Info'] = content['gameInfo']['team2Info'].map((x)=>x.replace(/ /gi,''));
-                content['gameInfo']['status'] = content['gameInfo']['status'].map((x)=>x.replace(/ /gi,''));
+            content['gameInfo']['team1Info'] = content['gameInfo']['team1Info'].map((x)=>x.replace(/\n/gi, "  ")    );
+            content['gameInfo']['team2Info'] = content['gameInfo']['team2Info'].map((x)=>x.replace(/\n/gi,'  '))    ;
+            content['gameInfo']['status'] = content['gameInfo']['status'].map((x)=>x.replace(/\n/gi,'  '));
                 _page.close();
                 _ph.exit();
                 console.log(content);
