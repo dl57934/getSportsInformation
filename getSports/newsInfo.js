@@ -3,6 +3,7 @@ socket.on('newsInfo',function (data) {
     for(var i = 0 ;i<data['newsLength'];i++)
         name.push(data['news'][i+2]);
     var ol = document.getElementById('newsInfo');
+    const br = document.createElement('br');
     for (var i = 0; i < data['newsLength']; i++){
         var li = document.createElement('li');
         ol.appendChild(li);
@@ -12,6 +13,7 @@ socket.on('newsInfo',function (data) {
         a.setAttribute('href', data['newsUrl'][i]);
         a.setAttribute('class','newsList');
         li.appendChild(a);
+        ol.appendChild(br);
     }
    $("li").click(function () {
        var a = $("li").index(this);

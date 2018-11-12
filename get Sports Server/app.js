@@ -21,6 +21,7 @@ var io = require('socket.io').listen(8000);
 io.sockets.on('connection',(socket)=> {
     console.log('connect');
     socket.on('major',(message)=> {
+        console.log(message);
        sportsInfo.getSportsInfo(message,socket);
     });
     socket.on('changeDay',(message)=>{
