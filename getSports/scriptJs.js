@@ -9,8 +9,14 @@ chrome.storage.sync.get(function (data) {
     document.getElementById("dateGame").innerHtml = day;
     document.querySelector("#whatSports").options[data.whatMajor['majorNum']-1].setAttribute('selected','selected');
     socket.emit('major', data.whatMajor['whatMajor']);
+    
 });
-
+chrome.notifications.create({
+    type: 'basic',
+    iconUrl: 'basketball.jpeg',
+    title: 'Kgc vs Lg',
+    message: '예약하신 농구경기가 10분밖에 남지않았습니다.'
+ }, function(notificationId) {});;
 
 document.querySelector('#whatSports').addEventListener("change",function () {
     var majorNum = document.querySelector('#whatSports').value;

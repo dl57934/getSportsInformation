@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -22,43 +23,50 @@
         li{
             font-size: 12px;
         }
+    
     #leftArrow, #rightArrow{
         width: 47px;height: 47px;
     }
     </style>
 
 </head>
-<body>
-<div id="frontHead">
-    <h1 id="title">get Sports Info</h1>
-</div>
-<div id="backHead">
-    <select id="whatSports">
-        <option value="kbaseball,1">야구</option>
-        <option value="wbaseball,2">해외야구</option>
-        <option value="kfootball,3">축구</option>
-        <option value="wfootball,4">해외축구</option>
-        <option value="basketball,5">농구</option>
-        <option value="volleyball,6">배구</option>
-        <option value="esports,7">eSports</option>
-    </select>
-</div>
-<div id="newsList" style="float: left">
-    <h1>신문 기사</h1>
-    <ol id="newsInfo">
-    </ol>
-</div>
-<div id ="playing" style="float: left">
 
-   <input id="leftArrow" type="image"  src="leftArrow.png" style="margin-left: 70px;float: left" > <h3 style="float: left" id="dateGame">11월 13일</h3>
-    <input id="rightArrow" type="image" src="rightArrow.png">
-    <ul id="centerInfo">
-    </ul>
-</div>
-<script src="jquery.min.js"></script>
-<script src="socket.io.js"></script>
-<script src="scriptJs.js"></script>
-<script src="newsInfo.js"></script>
-<script src="centerInfo.js"></script>
+<body>
+    <div id="frontHead">
+        <h1 id="title">get Sports Info</h1>
+    </div>
+    <div id="backHead">
+        <select id="whatSports">
+            <option value="kbaseball,1">야구</option>
+            <option value="wbaseball,2">해외야구</option>
+            <option value="kfootball,3">축구</option>
+            <option value="wfootball,4">해외축구</option>
+            <option value="basketball,5">농구</option>
+            <option value="volleyball,6">배구</option>
+            <option value="esports,7">eSports</option>
+        </select>
+    </div>
+    <div id="newsList" style="float: left">
+        <h1>신문 기사</h1>
+        <ul id="newsInfo">
+        </ul>
+    </div>
+    <div id="playing" style="float: left; text-align: center;">
+
+        <input id="leftArrow" type="image" src="leftArrow.png" style="margin-left: 70px;float: left">
+        <h3 style="float: left; margin-left:30px;" id="dateGame">11월 13일</h3>
+        <input id="rightArrow" type="image" src="rightArrow.png">
+        <div >
+            <ul id="centerInfo" >
+            </ul>
+        </div>
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script src="socket.io.js"></script>
+    <script src="scriptJs.js"></script>
+    <script src="newsInfo.js"></script>
+    <script src="centerInfo.js"></script>
 </body>
+
 </html>
