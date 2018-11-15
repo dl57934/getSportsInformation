@@ -14,8 +14,8 @@
   "bugs": {
     "url": "https://github.com/dl57934/getSportsInformation/issues"
   },
-  "script":{
-    "start" : "nodemon "
+  "scripts":{
+    "start" : "nodemon app.js"
   },
   "homepage": "https://github.com/dl57934/getSportsInformation#readme",
   "description": "",

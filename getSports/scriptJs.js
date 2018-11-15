@@ -1,4 +1,4 @@
-var socket = io.connect('http://172.30.1.3:8000');
+var socket = io.connect('http://172.30.1.41:8000');
 socket.on('connect',function () {
    console.log('Client connected');
 });
@@ -14,8 +14,8 @@ chrome.storage.sync.get(function (data) {
 chrome.notifications.create({
     type: 'basic',
     iconUrl: 'basketball.jpeg',
-    title: 'Kgc vs Lg',
-    message: '예약하신 농구경기가 10분밖에 남지않았습니다.'
+    title: 'Kt vs 현대모비스',
+    message: '예약하신 농구경기가 10분뒤에 시작합니다.'
  }, function(notificationId) {});;
 
 document.querySelector('#whatSports').addEventListener("change",function () {
@@ -67,7 +67,9 @@ document.querySelector('#rightArrow').addEventListener('click',()=>{
     $('#centerInfo > br').remove();
     const {fullday, day} = getDate(1);
     document.getElementById("dateGame").innerHTML = day;
-    const majorNum = document.querySelector('#whatSports').value;
+    let majorNum = document.querySelector('#whatSports').value;
+    console.log(majorNum);
     majorNum = majorNum.split(',');
+    
     socket.emit('changeDay',{'fullday':fullday,'majorNum':majorNum});
 });

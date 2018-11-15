@@ -20,7 +20,7 @@ socket.on('newsInfo',function (data) {
    $("li").click(function () {
        var a = $("li").index(this);
        var href = $("li:eq(" + a + ") > a").attr("href");
-        chrome.tabs.create({url:href});
+       window.open(href);
    });
 });
 
